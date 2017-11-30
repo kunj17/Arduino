@@ -1,0 +1,44 @@
+/*
+Ultrasonic Sensor and a buzzer
+hc-sr04
+ 
+USpin->Arduino nano
+vcc-5v arduino
+trg=d5
+echo=d4
+gnd=gnd
+
+
+buzzer=
++ve longer leg=d9
+-ve shorter leg=gnd*/
+#define t 5
+#define e 4   
+
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(t,OUTPUT);
+pinMode(e,INPUT);
+}
+
+void loop() {
+  long duration,distance;
+  digitalWrite(t,HIGH);
+  delayMicroseconds(2);
+  digitalWrite(t,LOW);
+  delayMicroseconds(10);
+  //digitalWrite(t,LOW);
+  
+  Time=pulseIn(e,HIGH);
+  distance=(Time/2)/29.1;
+  if(distance<=200)
+  {
+      tone(9,300,100);
+      printf(distance);
+      }
+      else
+      {
+        noTone(9);}
+  delay(10);
+}
